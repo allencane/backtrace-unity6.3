@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine.SceneManagement;
 
@@ -22,7 +22,8 @@ namespace Backtrace.Unity.Model.Attributes
             attributes["scene.active"] = activeScene.name;
             attributes["scene.buildIndex"] = activeScene.buildIndex.ToString(CultureInfo.InvariantCulture);
 #if UNITY_2018_4_OR_NEWER
-            attributes["scene.handle"] = activeScene.handle.ToString(CultureInfo.InvariantCulture);
+            // Unity 6 changed Scene.handle's ToString overloads; parameterless ToString works across versions.
+            attributes["scene.handle"] = activeScene.handle.ToString();
 #endif
             attributes["scene.isDirty"] = activeScene.isDirty.ToString(CultureInfo.InvariantCulture);
             attributes["scene.isLoaded"] = activeScene.isLoaded.ToString(CultureInfo.InvariantCulture);
